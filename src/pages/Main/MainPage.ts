@@ -3,6 +3,7 @@ import { Column } from '@lightningjs/ui-components'
 import { FeatureCarousel, HorizontalPlaylist, Layout, TopMenu } from '../../components'
 import { of } from 'rxjs'
 import cards from '../../dummyData/cards'
+import { withTopMenu } from '../../mixins'
 
 export interface MainPageSpec extends Lightning.Component.TemplateSpec {
   Layout: typeof Column
@@ -42,7 +43,6 @@ class MainPage
   }
 
   override _init() {
-    this.createTopMenu()
     this.createFeatureCarousel()
     this.createPlayLists(10)
     this.Layout.handleRender = this.handleLayoutRender.bind(this)
@@ -78,15 +78,8 @@ class MainPage
     // }
   }
 
-  createTopMenu() {
-    this.TopMenu = this.stage.element({
-      type: TopMenu,
-    })
-    this.Layout.appendItems([this.TopMenu])
-  }
-
   override _getFocused() {
     return this.Layout
   }
 }
-export default MainPage
+export default withTopMenu(MainPage as any, 'Layout')
