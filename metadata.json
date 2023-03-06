@@ -1,0 +1,6 @@
+{
+  "name": "test-popup-lightning",
+  "identifier": "com.domain.app.testpopuplightning",
+  "version": "1.0.0",
+  "icon": "./static/icon.png"
+}
